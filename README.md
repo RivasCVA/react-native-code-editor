@@ -60,7 +60,7 @@ const Example = (): JSX.Element => {
                         : {}),
                 }}
                 language="javascript"
-                syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
+                syntaxStyle={CodeEditorSyntaxStyles.github}
                 showLineNumbers
             />
         </SafeAreaView>
