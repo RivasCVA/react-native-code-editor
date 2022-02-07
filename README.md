@@ -112,6 +112,8 @@ The `style?` prop has many custom styles to make the code editor as customizable
 | `highlighterLineHeight?` | Use this property to align the syntax highlighter text with the text input. |
 | `highlighterColor?` | Use this property to help you align the syntax highlighter text with the text input. **Do not use in production**. |
 
+> Note: You can import `CodeEditorStyleType` to type-check the styles.
+
 ## Important Issue
 
 There is a small ongoing issue involving the cursor unaligning from the text. This is due to the fact that a text input is rendered on top of the syntax highlighter text. This issue varies depending on the `fontFamily`chosen.
