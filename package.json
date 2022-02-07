@@ -11,8 +11,11 @@
     "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@react-native-community/hooks": "^2.8.1",
     "react": "17.0.2",
-    "react-native": "0.67.2"
+    "react-native": "0.67.2",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-syntax-highlighter": "^15.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -20,6 +23,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
+    "@types/react-syntax-highlighter": "^13.5.2",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
