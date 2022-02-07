@@ -2,10 +2,10 @@ name: Workflow
 
 on:
   push:
-    paths: [ './**' ]
+    paths: [ '**/*' ]
     branches: [ main ]
   pull_request:
-    paths: [ './**' ]
+    paths: [ '**/*' ]
     branches: [ main ]
 
   workflow_dispatch:
