@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["es2017"],
+    "jsx": "react-native",
+    "isolatedModules": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "rootDir": "src"
+  },
+  "include": [
+      "src/**/*.ts", "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
+  ]
+}

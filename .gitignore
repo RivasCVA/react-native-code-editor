@@ -1,3 +1,6 @@
+# Package
+lib/
+
 # OSX
 .DS_Store
 

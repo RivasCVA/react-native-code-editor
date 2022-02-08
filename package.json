@@ -1,26 +1,36 @@
 {
   "name": "react-native-code-editor",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "src/index.ts",
+  "types": "lib/typescript/index.d.ts",
+  "files": [
+    "lib/",
+    "src/"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "bob build"
   },
   "dependencies": {
-    "@react-native-community/hooks": "^2.8.1",
-    "react": "17.0.2",
-    "react-native": "0.67.2",
-    "react-native-safe-area-context": "^3.3.2",
     "react-syntax-highlighter": "^15.4.5"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@react-native-community/hooks": "^2.8.1",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
     "@types/react-syntax-highlighter": "^13.5.2",
@@ -31,6 +41,10 @@
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.2",
+    "react-native-builder-bob": "^0.18.2",
+    "react-native-safe-area-context": "^3.3.2",
     "react-test-renderer": "17.0.2",
     "typescript": "^4.4.4"
   },
@@ -46,6 +60,23 @@
       "jsx",
       "json",
       "node"
+    ],
+    "modulePathIgnorePatterns": [
+      "lib"
+    ]
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }
