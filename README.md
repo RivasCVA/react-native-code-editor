@@ -14,7 +14,7 @@ Any contribution to make this component more extensible and efficient is welcome
 
 ## Simple Usage
 
-```ts
+```js
 import CodeEditor, { CodeEditorSyntaxStyles } from '@rivascva/react-native-code-editor';
 
 const Example = (): JSX.Element => {
@@ -43,7 +43,7 @@ Use the `marginBottom` style to accommodate the keyboard.
 
 > Note: See [`useKeyboard`](https://github.com/react-native-community/hooks#usekeyboard) and [`useSafeAreaInsets`](https://github.com/th3rdwave/react-native-safe-area-context#usesafeareainsets) for details on the hooks.
 
-```ts
+```js
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useKeyboard } from '@react-native-community/hooks';
 import CodeEditor, { CodeEditorSyntaxStyles } from '@rivascva/react-native-code-editor';
