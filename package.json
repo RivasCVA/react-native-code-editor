@@ -2,14 +2,15 @@
   "name": "@rivascva/react-native-code-editor",
   "description": "A code editor with syntax highlighting built for React Native applications.",
   "author": "Carlos Rivas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index.ts",
   "files": [
-    "/lib"
+    "/lib",
+    "/src"
   ],
   "repository": {
     "type": "git",
@@ -23,7 +24,9 @@
     "test": "jest",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "prepare": "bob build"
+    "prepare": "bob build",
+    "packlist": "npx npm-packlist",
+    "publish": "npm publish --access public"
   },
   "np": {
     "yarn": false,
