@@ -1,5 +1,7 @@
 ## React Native Code Editor
 
+[![npm-version](https://img.shields.io/npm/v/@rivascva/react-native-code-editor)](https://www.npmjs.com/package/@rivascva/react-native-code-editor) [![gh-actions-status](https://github.com/RivasCVA/react-native-code-editor/actions/workflows/workflow.yml/badge.svg)](https://github.com/RivasCVA/react-native-code-editor/actions/workflows/workflow.yml) [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/RivasCVA/react-native-code-editor/blob/v1.0.3/LICENSE)
+
 A code editor with syntax highlighting built for React Native applications. The component is built on top of [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter). You can use it as a code editor or to display code snippets.
 
 ## Installation
