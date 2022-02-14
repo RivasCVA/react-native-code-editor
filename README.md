@@ -93,6 +93,7 @@ Checkout [`useBottomTabBarHeight`](https://reactnavigation.org/docs/bottom-tab-n
 | `syntaxStyle?` | Syntax highlighting style. View all [here](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/AVAILABLE_STYLES_HLJS.MD). |
 | `initialValue?` | Initial value on render. |
 | `onChange?` | On value change. |
+| `onKeyPress?` | On key press. |
 | `showLineNumbers?` | Whether to show line numbers next to each line. |
 | `readOnly?` | Make the editor read only. |
 
