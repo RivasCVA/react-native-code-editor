@@ -85,6 +85,11 @@ type Props = {
     onChange?: (newValue: string) => void;
 
     /**
+     * On key press.
+     */
+    onKeyPress?: (key: string) => void;
+
+    /**
      * Whether to show line numbers next to each line.
      */
     showLineNumbers?: boolean;
@@ -107,6 +112,7 @@ const CodeEditor = (props: Props): JSX.Element => {
         syntaxStyle = CodeEditorSyntaxStyles.atomOneDark,
         initialValue = '',
         onChange,
+        onKeyPress,
         showLineNumbers = false,
         readOnly = false,
     } = props;
@@ -207,6 +213,9 @@ const CodeEditor = (props: Props): JSX.Element => {
                     }, 10);
                 }
                 break;
+        }
+        if (onKeyPress) {
+            onKeyPress(key);
         }
     };
 
