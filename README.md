@@ -96,6 +96,7 @@ Checkout [`useBottomTabBarHeight`](https://reactnavigation.org/docs/bottom-tab-n
 | `onKeyPress?` | On key press. |
 | `showLineNumbers?` | Whether to show line numbers next to each line. |
 | `readOnly?` | Make the editor read only. |
+| `autoFocus?` | Focus the code editor on component mount. |
 
 > Note: You must import `CodeEditorSyntaxStyles` to set a `syntaxStyle`.
 
