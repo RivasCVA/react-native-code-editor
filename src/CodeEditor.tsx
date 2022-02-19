@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import {
     View,
     TextInput,
@@ -98,6 +98,15 @@ type Props = {
      * Make the editor read only.
      */
     readOnly?: boolean;
+
+    /**
+     * Focus the code editor on component mount.
+     */
+    autoFocus?: boolean;
+};
+
+type PropsWithForwardRef = Props & {
+    forwardedRef: React.Ref<TextInput>;
 };
 
 type TextInputSelectionType = {
@@ -105,7 +114,7 @@ type TextInputSelectionType = {
     end: number;
 };
 
-const CodeEditor = (props: Props): JSX.Element => {
+const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     const {
         style,
         language,
@@ -115,6 +124,8 @@ const CodeEditor = (props: Props): JSX.Element => {
         onKeyPress,
         showLineNumbers = false,
         readOnly = false,
+        autoFocus = true,
+        forwardedRef,
     } = props;
 
     const {
@@ -140,6 +151,9 @@ const CodeEditor = (props: Props): JSX.Element => {
 
     // Only when line numbers are showing
     const lineNumbersPadding = showLineNumbers ? 1.75 * fontSize : undefined;
+
+    // Sync forwardedRef with inputRef
+    useImperativeHandle(forwardedRef, () => inputRef.current!, [inputRef]);
 
     useEffect(() => {
         if (onChange) {
@@ -256,7 +270,7 @@ const CodeEditor = (props: Props): JSX.Element => {
                 autoCapitalize="none"
                 autoComplete="off"
                 autoCorrect={false}
-                autoFocus={true}
+                autoFocus={autoFocus}
                 keyboardType="ascii-capable"
                 editable={!readOnly}
                 ref={inputRef}
@@ -266,7 +280,11 @@ const CodeEditor = (props: Props): JSX.Element => {
     );
 };
 
-export default CodeEditor;
+const CodeEditorWithForwardRef = React.forwardRef<TextInput, Props>((props, ref) => (
+    <CodeEditor {...props} forwardedRef={ref} />
+));
+
+export default CodeEditorWithForwardRef;
 
 const styles = StyleSheet.create({
     input: {
