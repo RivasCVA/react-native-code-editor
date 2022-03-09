@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, {useEffect, useImperativeHandle, useRef, useState} from 'react';
 import {
     View,
     TextInput,
@@ -15,7 +15,7 @@ import SyntaxHighlighter, {
     SyntaxHighlighterStyleType,
     SyntaxHighlighterSyntaxStyles,
 } from './SyntaxHighlighter';
-import { Languages } from './languages';
+import {Languages} from './languages';
 import * as Braces from './braces';
 import * as Indentation from './indentation';
 import * as Strings from './strings';
@@ -147,7 +147,8 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     const [value, setValue] = useState<string>(initialValue);
     const highlighterRef = useRef<ScrollView>(null);
     const inputRef = useRef<TextInput>(null);
-    const inputSelection = useRef<TextInputSelectionType>({ start: 0, end: 0 });
+    // const inputSelection = useRef<TextInputSelectionType>({start: 0, end: 0});
+    const [inputSelectionNew, setInputSelectionNew] = useState({start: 0, end: 0});
 
     // Only when line numbers are showing
     const lineNumbersPadding = showLineNumbers ? 1.75 * fontSize : undefined;
@@ -164,17 +165,21 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     // Negative values move the cursor to the left
     const moveCursor = (current: number, amount: number) => {
         const newPosition = current + amount;
-        inputRef.current?.setNativeProps({
-            selection: {
-                start: newPosition,
-                end: newPosition,
-            },
+        // inputRef.current?.setNativeProps({
+        //     selection: {
+        //         start: newPosition,
+        //         end: newPosition,
+        //     },
+        // });
+        setInputSelectionNew({
+            start: newPosition,
+            end: newPosition,
         });
         return newPosition;
     };
 
     const addIndentation = (val: string) => {
-        let cursorPosition = inputSelection.current.start - 1;
+        let cursorPosition = inputSelectionNew.start - 1;
 
         // All lines before the cursor
         const preLines = val.substring(0, cursorPosition).split('\n');
@@ -197,8 +202,8 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     };
 
     const addClosingBrace = (val: string, key: string) => {
-        let cursorPosition = inputSelection.current.start;
-        cursorPosition = moveCursor(cursorPosition, -1);
+        let cursorPosition = inputSelectionNew.start;
+        cursorPosition = moveCursor(cursorPosition, 1);
         return Strings.insertStringAt(val, cursorPosition, Braces.getCloseBrace(key));
     };
 
@@ -209,7 +214,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     const handleScroll = (e: NativeSyntheticEvent<TextInputScrollEventData>) => {
         // Match text input scroll with syntax highlighter scroll
         const y = e.nativeEvent.contentOffset.y;
-        highlighterRef.current?.scrollTo({ y, animated: false });
+        highlighterRef.current?.scrollTo({y, animated: false});
     };
 
     const handleKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
@@ -234,11 +239,12 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     };
 
     const handleSelectionChange = (e: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => {
-        inputSelection.current = e.nativeEvent.selection;
+        // inputSelection.current = JSON.parse(JSON.stringify(e.nativeEvent.selection));
+        setInputSelectionNew(e.nativeEvent.selection);
     };
 
     return (
-        <View style={{ width, height, marginTop, marginBottom }}>
+        <View style={{width, height, marginTop, marginBottom}}>
             <SyntaxHighlighter
                 language={language}
                 addedStyle={addedStyle}
@@ -250,6 +256,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
                 {value}
             </SyntaxHighlighter>
             <TextInput
+                selection={inputSelectionNew}
                 style={[
                     styles.input,
                     {
@@ -281,7 +288,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
 };
 
 const CodeEditorWithForwardRef = React.forwardRef<TextInput, Props>((props, ref) => (
-    <CodeEditor {...props} forwardedRef={ref} />
+    <CodeEditor {...props} forwardedRef={ref}/>
 ));
 
 export default CodeEditorWithForwardRef;
@@ -293,5 +300,6 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         left: 0,
+        textAlignVertical: 'top'
     },
 });
