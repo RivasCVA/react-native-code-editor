@@ -2,7 +2,7 @@
   "name": "@rivascva/react-native-code-editor",
   "description": "A code editor with syntax highlighting built for React Native applications.",
   "author": "Carlos Rivas",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
