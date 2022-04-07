@@ -4,8 +4,8 @@ import { useKeyboard } from '@react-native-community/hooks';
 import CodeEditor, { CodeEditorSyntaxStyles } from './src';
 
 const Example = (): JSX.Element => {
-    const keyboard = useKeyboard();
     const insets = useSafeAreaInsets();
+    const keyboard = useKeyboard();
 
     return (
         <SafeAreaView>
