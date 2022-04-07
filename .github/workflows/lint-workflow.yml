@@ -1,4 +1,4 @@
-name: Workflow
+name: Lint Workflow
 
 on:
   push:
@@ -19,15 +19,12 @@ jobs:
 
       # Installs npm modules
       - name: Install
-        working-directory: ./
         run: npm install
 
       # Runs eslint check
       - name: Eslint
-        working-directory: ./
         run: npm run lint
       
       # Runs prettier check
       - name: Prettier
-        working-directory: ./
         run: npm run prettier
