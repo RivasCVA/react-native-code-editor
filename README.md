@@ -37,7 +37,7 @@ const Example = (): JSX.Element => {
 export default Example;
 ```
 
-<img src="https://user-images.githubusercontent.com/60367213/152731230-049a9bdf-e592-4d71-946d-9b2d2c608631.gif" height="600">
+<img src="https://user-images.githubusercontent.com/60367213/152731230-049a9bdf-e592-4d71-946d-9b2d2c608631.gif" height="600" width="277">
 
 ## Keyboard Alignment
 
@@ -78,7 +78,7 @@ const Example = (): JSX.Element => {
 export default Example;
 ```
 
-<img src="https://user-images.githubusercontent.com/60367213/152732727-48a15db3-b7dd-4812-bf4d-dcfea9e5ca08.gif" height="600">
+<img src="https://user-images.githubusercontent.com/60367213/152732727-48a15db3-b7dd-4812-bf4d-dcfea9e5ca08.gif" height="600" width="277">
 
 ### Using React Navigator?
 
