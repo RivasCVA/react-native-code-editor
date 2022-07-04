@@ -90,6 +90,11 @@ export type SyntaxHighlighterProps = HighlighterProps & {
      * Whether to allow scrolling on the syntax highlighter.
      */
     scrollEnabled?: boolean;
+
+    /**
+     * Test ID used for testing.
+     */
+    testID?: string;
 };
 
 type PropsWithForwardRef = SyntaxHighlighterProps & {
@@ -103,6 +108,7 @@ const SyntaxHighlighter = (props: PropsWithForwardRef): JSX.Element => {
         scrollEnabled,
         showLineNumbers = false,
         forwardedRef,
+        testID,
         ...highlighterProps
     } = props;
 
@@ -235,6 +241,7 @@ const SyntaxHighlighter = (props: PropsWithForwardRef): JSX.Element => {
                         paddingBottom: padding,
                     },
                 ]}
+                testID={`${testID}-scroll-view`}
                 ref={forwardedRef}
                 scrollEnabled={scrollEnabled}
             >
@@ -253,6 +260,7 @@ const SyntaxHighlighter = (props: PropsWithForwardRef): JSX.Element => {
             CodeTag={View}
             PreTag={View}
             renderer={nativeRenderer}
+            testID={testID}
             style={stylesheet}
         />
     );

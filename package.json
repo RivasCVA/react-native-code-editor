@@ -30,7 +30,8 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "npm run lint",
-      "npm run prettier"
+      "npm run prettier",
+      "npm test"
     ]
   },
   "dependencies": {
@@ -45,6 +46,7 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@react-native-community/hooks": "^2.8.1",
+    "@testing-library/react-native": "^10.1.1",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
     "@types/react-syntax-highlighter": "^13.5.2",
@@ -79,6 +81,9 @@
     ],
     "modulePathIgnorePatterns": [
       "lib"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-syntax-highlighter)/"
     ]
   },
   "keywords": [

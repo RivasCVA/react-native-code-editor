@@ -103,6 +103,11 @@ type Props = {
      * Focus the code editor on component mount.
      */
     autoFocus?: boolean;
+
+    /**
+     * Test ID used for testing.
+     */
+    testID?: string;
 };
 
 type PropsWithForwardRef = Props & {
@@ -125,6 +130,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
         showLineNumbers = false,
         readOnly = false,
         autoFocus = true,
+        testID,
         forwardedRef,
     } = props;
 
@@ -238,13 +244,14 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     };
 
     return (
-        <View style={{ width, height, marginTop, marginBottom }}>
+        <View style={{ width, height, marginTop, marginBottom }} testID={testID}>
             <SyntaxHighlighter
                 language={language}
                 addedStyle={addedStyle}
                 syntaxStyle={syntaxStyle}
                 scrollEnabled={false}
                 showLineNumbers={showLineNumbers}
+                testID={`${testID}-syntax-highlighter`}
                 ref={highlighterRef}
             >
                 {value}
@@ -273,6 +280,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
                 autoFocus={autoFocus}
                 keyboardType="ascii-capable"
                 editable={!readOnly}
+                testID={`${testID}-text-input`}
                 ref={inputRef}
                 multiline
             />
