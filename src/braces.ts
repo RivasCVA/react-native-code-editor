@@ -61,7 +61,7 @@ export const getCloseBrace = (str: string): string => {
 };
 
 /**
- * Check if the string is a regular brace.
+ * Check if the string is a regular open brace.
  * Only true on `{`, `(`, `[`, or `<`.
  * @param str Brace to check.
  * @returns boolean

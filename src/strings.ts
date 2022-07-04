@@ -1,12 +1,12 @@
 import * as Indentation from './indentation';
 
 /**
- * Converts tabs to the appropriate number of spaces in the given string.
+ * Converts prefix tabs to the appropriate number of spaces in the given string.
  * @param str Root string.
  * @returns string
  */
 export const convertTabsToSpaces = (str: string): string => {
-    return str.replace('\t', Indentation.createIndentString());
+    return str.replace(/\t/g, Indentation.createIndentString());
 };
 
 /**
