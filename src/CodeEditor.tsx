@@ -278,10 +278,10 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
                 autoComplete="off"
                 autoCorrect={false}
                 autoFocus={autoFocus}
-                keyboardType="ascii-capable"
+                // keyboardType="ascii-capable"
                 editable={!readOnly}
                 testID={`${testID}-text-input`}
-                ref={inputRef}
+                // ref={inputRef}
                 multiline
             />
         </View>
