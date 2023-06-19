@@ -170,6 +170,7 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
     // Negative values move the cursor to the left
     const moveCursor = (current: number, amount: number) => {
         const newPosition = current + amount;
+
         inputRef.current?.setNativeProps({
             selection: {
                 start: newPosition,
@@ -185,18 +186,26 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
         // All lines before the cursor
         const preLines = val.substring(0, cursorPosition).split('\n');
         const indentSize = Indentation.getSuggestedIndentSize(preLines);
+
+        if (!indentSize) {
+            return val;
+        }
+
         let indentation = Indentation.createIndentString(indentSize);
 
         // Add newline and indentation on a regular brace pair
         const leftChar = val[cursorPosition - 1] || '';
         const rightChar = val[cursorPosition + 1] || '';
+
+        let newPosition = moveCursor(cursorPosition, indentSize + 1);
+
         if (Braces.isBracePair(leftChar, rightChar)) {
             let addedIndentionSize = Braces.isRegularBrace(leftChar)
                 ? Math.max(indentSize - Indentation.INDENT_SIZE, 0)
                 : indentSize;
             indentation += '\n' + Indentation.createIndentString(addedIndentionSize);
             // Don't update local cursor position to insert all new changes in one insert call
-            moveCursor(cursorPosition, -addedIndentionSize);
+            moveCursor(newPosition, addedIndentionSize);
         }
 
         return Strings.insertStringAt(val, cursorPosition, indentation);
@@ -204,12 +213,19 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
 
     const addClosingBrace = (val: string, key: string) => {
         let cursorPosition = inputSelection.current.start;
-        cursorPosition = moveCursor(cursorPosition, -1);
-        return Strings.insertStringAt(val, cursorPosition, Braces.getCloseBrace(key));
+        return Strings.insertStringAt(val, cursorPosition - 1, Braces.getCloseBrace(key));
     };
 
     const handleChangeText = (text: string) => {
+        const diff = text.length - value.length;
         setValue(Strings.convertTabsToSpaces(text));
+
+        inputRef.current?.setNativeProps({
+            selection: {
+                start: inputSelection.current.start + diff,
+                end: inputSelection.current.start + diff,
+            },
+        });
     };
 
     const handleScroll = (e: NativeSyntheticEvent<TextInputScrollEventData>) => {
